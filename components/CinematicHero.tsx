@@ -67,6 +67,17 @@ const SlideScene = ({
   const revealScaleX = useTransform(progress, [start, center, end], [0.72, 1, 0.72]);
   const revealOpacity = useTransform(progress, [start, center, end], [0.18, 0.65, 0.18]);
   const accentBarScale = useTransform(progress, [start, center, end], [0.35, 1, 0.35]);
+  const titleGlow = useTransform(
+    progress,
+    [start, center, end],
+    isScrolling ? [0.08, 0.65, 0.08] : [0.02, 0.18, 0.02]
+  );
+  const titleShadow = useTransform(
+    titleGlow,
+    (value) =>
+      `0 0 ${18 + value * 34}px rgba(255,255,255,${0.12 + value * 0.14}),
+       0 0 ${40 + value * 70}px rgba(255,255,255,${0.04 + value * 0.1})`
+  );
   const textFilter = useTransform(
     contentOpacity,
     (value) => `brightness(${isScrolling ? 1.28 : 0.88}) saturate(${isScrolling ? 1.12 : 0.92}) opacity(${isScrolling ? Math.max(0.72, value) : Math.max(0.28, value * 0.7)})`
@@ -110,9 +121,12 @@ const SlideScene = ({
           <p className="text-neon-green font-mono text-[10px] md:text-xs tracking-[0.45em] mb-4 uppercase">
             {slide.subtitle}
           </p>
-          <h1 className={`text-[15vw] font-black leading-none tracking-tighter ${slide.accent} mix-blend-difference`}>
+          <motion.h1
+            style={{ textShadow: titleShadow }}
+            className={`text-[15vw] font-black leading-none tracking-tighter ${slide.accent} mix-blend-difference`}
+          >
             {slide.title}
-          </h1>
+          </motion.h1>
         </motion.div>
       </div>
 

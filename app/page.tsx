@@ -46,7 +46,7 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="relative overflow-hidden border-t border-white/8 bg-black px-6 py-16 pb-28 md:px-10 md:py-20 lg:pb-44">
+      <footer id="footer" className="relative overflow-hidden border-t border-white/8 bg-black px-6 py-16 pb-28 md:px-10 md:py-20 lg:pb-44">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.06),transparent_34%)]" />
         <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:90px_90px] opacity-30 [mask-image:radial-gradient(circle_at_center,black,transparent_82%)]" />
 

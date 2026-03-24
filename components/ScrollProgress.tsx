@@ -1,7 +1,7 @@
 "use client";
 
 import { motion, useMotionValueEvent, useScroll, useSpring } from "framer-motion";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const SECTIONS = [
   { id: "hero", label: "Hero" },
@@ -9,11 +9,13 @@ const SECTIONS = [
   { id: "gallery", label: "Gallery" },
   { id: "archive", label: "Archive" },
   { id: "cta", label: "Launch" },
+  { id: "footer", label: "Footer" },
 ];
 
 const ScrollProgress = () => {
   const { scrollYProgress } = useScroll();
   const [progress, setProgress] = useState(0);
+  const [activeSectionId, setActiveSectionId] = useState(SECTIONS[0].id);
   const scaleY = useSpring(scrollYProgress, {
     stiffness: 120,
     damping: 30,
@@ -29,11 +31,56 @@ const ScrollProgress = () => {
     setProgress(Math.round(latest * 100));
   });
 
-  const activeIndex = Math.min(
-    SECTIONS.length - 1,
-    Math.floor((progress / 100) * SECTIONS.length)
+  useEffect(() => {
+    const updateActiveSection = () => {
+      const probeY = window.innerHeight * 0.35;
+
+      let closestId = SECTIONS[0].id;
+      let closestDistance = Number.POSITIVE_INFINITY;
+
+      for (const section of SECTIONS) {
+        const element = document.getElementById(section.id);
+        if (!element) {
+          continue;
+        }
+
+        const rect = element.getBoundingClientRect();
+        const isInRange = rect.top <= probeY && rect.bottom >= probeY;
+
+        if (isInRange) {
+          setActiveSectionId(section.id);
+          return;
+        }
+
+        const distance = Math.min(
+          Math.abs(rect.top - probeY),
+          Math.abs(rect.bottom - probeY)
+        );
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestId = section.id;
+        }
+      }
+
+      setActiveSectionId(closestId);
+    };
+
+    updateActiveSection();
+    window.addEventListener("scroll", updateActiveSection, { passive: true });
+    window.addEventListener("resize", updateActiveSection);
+
+    return () => {
+      window.removeEventListener("scroll", updateActiveSection);
+      window.removeEventListener("resize", updateActiveSection);
+    };
+  }, []);
+
+  const activeIndex = Math.max(
+    0,
+    SECTIONS.findIndex((section) => section.id === activeSectionId)
   );
-  const isLightSection = activeIndex === SECTIONS.length - 1;
+  const isLightSection = activeSectionId === "cta";
   const activeLabel = SECTIONS[activeIndex]?.label ?? "Hero";
 
   return (
@@ -135,11 +182,7 @@ const ScrollProgress = () => {
 
       <div className="pointer-events-none fixed right-4 top-1/2 z-[10001] hidden -translate-y-1/2 lg:block lg:right-6">
         <div
-          className={`progressive-side-shell pointer-events-auto flex items-center gap-4 rounded-[28px] px-4 py-5 transition-colors duration-300 ${
-            isLightSection
-              ? "border-transparent bg-transparent shadow-none backdrop-blur-none"
-              : ""
-          }`}
+          className="pointer-events-auto flex items-center gap-4 rounded-[28px] px-4 py-5 transition-colors duration-300"
         >
           <div className="flex min-h-[320px] flex-col items-end justify-between">
             <div className="text-right">
