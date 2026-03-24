@@ -3,6 +3,7 @@
 import React, { useRef, useMemo } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue, MotionValue } from "framer-motion";
 import Image from "next/image";
+import AutoplayVideo from "./AutoplayVideo";
 
 interface SphereItemProps {
   item: {
@@ -58,7 +59,7 @@ const SphereItem: React.FC<SphereItemProps> = ({ item, globalRotateY }) => {
           
           {/* Visual Asset */}
           {item.isVideo ? (
-               <video 
+               <AutoplayVideo
                   src={item.src} 
                   autoPlay loop muted playsInline 
                   className="w-full h-full object-cover"

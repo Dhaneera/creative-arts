@@ -2,6 +2,7 @@
 
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
+import AutoplayVideo from "./AutoplayVideo";
 
 const slides = [
   {
@@ -45,7 +46,7 @@ const CinematicHero = () => {
           {slides.map((slide, index) => (
             <div key={index} className="relative w-screen h-full flex items-center justify-center shrink-0">
               {/* Background Video */}
-              <video 
+              <AutoplayVideo
                 src={slide.video}
                 autoPlay
                 loop

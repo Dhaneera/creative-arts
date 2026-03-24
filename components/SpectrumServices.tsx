@@ -2,6 +2,7 @@
 
 import React, { useRef, useState, useEffect } from "react";
 import { motion, useMotionValue, useSpring, AnimatePresence, useInView } from "framer-motion";
+import AutoplayVideo from "./AutoplayVideo";
 
 const services = [
   {
@@ -116,7 +117,7 @@ const ServiceItem = ({
                 className="w-full h-full object-cover scale-110 pointer-events-none"
               />
             ) : (
-              <video 
+              <AutoplayVideo
                 src={service.asset}
                 autoPlay loop muted playsInline
                 className="w-full h-full object-cover scale-125 pointer-events-none"
@@ -219,7 +220,7 @@ const SpectrumServices = () => {
                     className="w-full h-full object-cover scale-110 pointer-events-none"
                   />
                 ) : (
-                  <video 
+                  <AutoplayVideo
                     src={services[activeIndex].asset}
                     autoPlay loop muted playsInline
                     className="w-full h-full object-cover scale-150"
@@ -248,7 +249,7 @@ const SpectrumServices = () => {
                     className="w-full h-full object-cover blur-[80px] saturate-200"
                 />
              ) : (
-                <video 
+                <AutoplayVideo
                     src={services[activeIndex].asset}
                     autoPlay loop muted playsInline
                     className="w-full h-full object-cover blur-[80px] saturate-200"

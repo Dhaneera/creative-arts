@@ -3,6 +3,7 @@
 import React, { useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import Image from "next/image";
+import AutoplayVideo from "./AutoplayVideo";
 
 interface KineticAssetProps {
   src: string;
@@ -46,7 +47,7 @@ const KineticAsset: React.FC<KineticAssetProps> = ({
       className={`group relative rounded-3xl overflow-hidden shadow-2xl transition-all duration-700 hover:shadow-[0_20px_50px_rgba(180,255,57,0.2)] ${className}`}
     >
       {type === "video" || type === "gif" ? (
-        <video
+        <AutoplayVideo
           src={src}
           autoPlay
           loop
