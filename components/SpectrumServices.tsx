@@ -40,6 +40,7 @@ const services = [
 
 const SpectrumServices = () => {
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
+  const [isSectionHovered, setIsSectionHovered] = useState(false);
   const containerRef = useRef<HTMLDivElement>(null);
   
   // Mouse Position for Lens & Magnetic Pull
@@ -58,17 +59,26 @@ const SpectrumServices = () => {
     <section 
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      className="relative min-h-screen bg-black py-40 overflow-hidden cursor-none"
+      onMouseEnter={() => setIsSectionHovered(true)}
+      onMouseLeave={() => setIsSectionHovered(false)}
+      className="relative min-h-screen bg-black py-40 overflow-hidden hide-global-cursor cursor-none"
     >
       {/* Magnetic Beam Cursor */}
-      <motion.div 
-        style={{ left: smoothX, top: smoothY }}
-        className="fixed w-4 h-4 bg-white rounded-full pointer-events-none z-[100] mix-blend-difference"
-      />
-      <motion.div 
-        style={{ left: smoothX, top: smoothY }}
-        className="fixed w-[400px] h-[1px] bg-gradient-to-r from-white/20 to-transparent origin-left pointer-events-none z-[90] rotate-[15deg]"
-      />
+      <AnimatePresence>
+        {isSectionHovered && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="pointer-events-none z-[100]"
+          >
+            <motion.div 
+              style={{ left: smoothX, top: smoothY }}
+              className="fixed w-[400px] h-[1px] bg-gradient-to-r from-white/20 to-transparent origin-left rotate-[15deg]"
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
 
       <div className="container mx-auto px-10 relative z-10">
         <div className="flex flex-col gap-10">
