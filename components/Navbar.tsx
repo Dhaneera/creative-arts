@@ -58,12 +58,12 @@ const NavItem = ({ name, target, mouseX }: { name: string; target: string; mouse
             animate={{ 
                 height: isHovered ? 2 : 1,
                 width: isHovered ? (baseWidth === 60 ? 30 : 40) : (baseWidth === 60 ? 10 : 20),
-                backgroundColor: isHovered ? "#00FF8E" : "rgba(255,255,255,0.2)"
+                backgroundColor: isHovered ? "#ffffff" : "rgba(255,255,255,0.2)"
             }}
             className="absolute top-[-10px] md:top-[-12px] rounded-full transition-colors"
          />
          
-         <span className={`text-[8px] md:text-[9px] font-black tracking-[0.2em] md:tracking-[0.4em] transition-all duration-300 ${isHovered ? 'text-neon-green md:scale-110 scale-100' : 'text-white/30'}`}>
+         <span className={`text-[8px] md:text-[9px] font-black tracking-[0.2em] md:tracking-[0.4em] transition-all duration-300 ${isHovered ? 'text-white md:scale-110 scale-100' : 'text-white/30'}`}>
             {name}
          </span>
       </div>
@@ -74,7 +74,6 @@ const NavItem = ({ name, target, mouseX }: { name: string; target: string; mouse
 const Navbar = () => {
   const mouseX = useMotionValue(Infinity);
   const isVisible = useMotionValue(1);
-  const lastScrollY = useRef(0);
   const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
 
   // Scroll detection logic: Hide on move, Show on stop or up
@@ -84,14 +83,10 @@ const Navbar = () => {
 
       if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
 
-      const currentScrollY = window.scrollY;
-
       // Show on stop (after 400ms of no scrolling)
       scrollTimeout.current = setTimeout(() => {
         isVisible.set(1);
       }, 400);
-
-      lastScrollY.current = currentScrollY;
     };
 
     window.addEventListener("scroll", handleScroll);
@@ -107,7 +102,7 @@ const Navbar = () => {
   return (
     <motion.nav
       style={{ y, opacity }}
-      className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[9999]"
+      className="fixed bottom-10 left-1/2 z-[9999] hidden -translate-x-1/2 lg:block"
       onMouseMove={(e) => mouseX.set(e.pageX)}
       onMouseLeave={() => mouseX.set(Infinity)}
     >
@@ -134,7 +129,7 @@ const Navbar = () => {
       </div>
       
       {/* Background Pulse Glow */}
-      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-10 bg-neon-green/10 blur-3xl -z-10" />
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-10 bg-white/10 blur-3xl -z-10" />
     </motion.nav>
   );
 };

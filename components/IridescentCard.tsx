@@ -18,15 +18,15 @@ const IridescentCard: React.FC<IridescentCardProps> = ({ title, description, tag
       className="group relative p-[1px] rounded-[40px] overflow-hidden bg-white/5 transition-all duration-700"
     >
       {/* Moving Border Gradient */}
-      <div className="absolute inset-0 bg-gradient-to-r from-neon-green via-electric-cyan to-hot-pink opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-[spin_6s_linear_infinite]" />
+      <div className="absolute inset-0 bg-gradient-to-r from-white via-zinc-300 to-zinc-700 opacity-0 group-hover:opacity-100 transition-opacity duration-1000 animate-[spin_6s_linear_infinite]" />
       
       {/* Intense Background Glow */}
-      <div className="absolute inset-0 bg-neon-green/0 group-hover:bg-neon-green/5 blur-[100px] transition-colors duration-700" />
+      <div className="absolute inset-0 bg-white/0 group-hover:bg-white/5 blur-[100px] transition-colors duration-700" />
 
       <div className="relative h-full glass rounded-[39px] p-10 flex flex-col justify-between z-10">
         <div>
-          <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-10 group-hover:bg-neon-green/20 group-hover:scale-110 transition-all duration-500">
-            <div className="text-zinc-400 group-hover:text-neon-green transition-colors">
+          <div className="w-16 h-16 rounded-2xl bg-white/5 flex items-center justify-center mb-10 group-hover:bg-white/20 group-hover:scale-110 transition-all duration-500">
+            <div className="text-zinc-400 group-hover:text-white transition-colors">
               {icon}
             </div>
           </div>
@@ -38,8 +38,8 @@ const IridescentCard: React.FC<IridescentCardProps> = ({ title, description, tag
         </div>
         
         <div className="mt-12 flex justify-end">
-          <div className="w-14 h-14 rounded-full border border-white/5 flex items-center justify-center group-hover:border-neon-green/50 group-hover:bg-neon-green/10 transition-all duration-500">
-            <ArrowUpRight className="w-6 h-6 text-zinc-600 transition-all group-hover:text-neon-green group-hover:translate-x-1 group-hover:-translate-y-1" />
+          <div className="w-14 h-14 rounded-full border border-white/5 flex items-center justify-center group-hover:border-white/50 group-hover:bg-white/10 transition-all duration-500">
+            <ArrowUpRight className="w-6 h-6 text-zinc-600 transition-all group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1" />
           </div>
         </div>
       </div>

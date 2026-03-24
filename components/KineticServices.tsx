@@ -49,7 +49,7 @@ const KineticServices = () => {
            <motion.span 
              initial={{ opacity: 0, x: -20 }}
              whileInView={{ opacity: 1, x: 0 }}
-             className="text-neon-green font-mono text-xs tracking-[0.8em] uppercase block mb-6"
+             className="text-white/80 font-mono text-xs tracking-[0.8em] uppercase block mb-6"
            >
              Core Capabilities_
            </motion.span>

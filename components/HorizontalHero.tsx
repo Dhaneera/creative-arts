@@ -23,7 +23,7 @@ const HorizontalHero = () => {
               whileInView={{ x: 0, opacity: 1 }}
               className="text-[12vw] font-black leading-none tracking-tighter text-white"
             >
-              WHISK <span className="text-neon-green">STUDIO</span>
+              WHISK <span className="text-zinc-300">STUDIO</span>
             </motion.h1>
             <p className="mt-8 text-2xl text-zinc-500 max-w-xl">
               Award-winning interactive design. We turn kinetic energy into visual stories.
@@ -33,7 +33,7 @@ const HorizontalHero = () => {
           {/* Slide 2: The Vision */}
           <div className="w-[80vw] flex items-center gap-12 shrink-0">
             <div className="flex-1">
-              <h2 className="text-7xl font-bold">First an <span className="text-electric-cyan italic">Idea.</span></h2>
+              <h2 className="text-7xl font-bold">First an <span className="text-zinc-300 italic">Idea.</span></h2>
               <p className="mt-6 text-xl text-zinc-400">
                 Crafting digital experiences that defy standard gravity.
               </p>
@@ -52,7 +52,7 @@ const HorizontalHero = () => {
               className="w-[400px] h-[500px]"
             />
             <div className="flex-1">
-              <h2 className="text-7xl font-bold">In <span className="text-hot-pink uppercase">Motion.</span></h2>
+              <h2 className="text-7xl font-bold">In <span className="text-zinc-400 uppercase">Motion.</span></h2>
               <p className="mt-6 text-xl text-zinc-400">
                 Blurring the lines between 3D art and functional interfaces.
               </p>

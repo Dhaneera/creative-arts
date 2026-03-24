@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef } from "react";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
 import AutoplayVideo from "./AutoplayVideo";
 
 const slides = [
@@ -31,6 +31,87 @@ const slides = [
   }
 ];
 
+const SlideScene = ({
+  slide,
+  index,
+  progress,
+}: {
+  slide: (typeof slides)[number];
+  index: number;
+  progress: MotionValue<number>;
+}) => {
+  const total = slides.length;
+  const start = index / total;
+  const center = (index + 0.5) / total;
+  const end = (index + 1) / total;
+
+  const contentY = useTransform(progress, [start, center, end], [72, 0, -72]);
+  const contentOpacity = useTransform(progress, [start, center, end], [0.2, 1, 0.2]);
+  const contentScale = useTransform(progress, [start, center, end], [0.92, 1, 0.92]);
+  const mediaScale = useTransform(progress, [start, center, end], [1.2, 1.02, 1.2]);
+  const mediaRotate = useTransform(progress, [start, center, end], [index % 2 === 0 ? -3 : 3, 0, index % 2 === 0 ? 3 : -3]);
+  const mediaX = useTransform(progress, [start, center, end], [index % 2 === 0 ? -60 : 60, 0, index % 2 === 0 ? 60 : -60]);
+  const overlayOpacity = useTransform(progress, [start, center, end], [0.72, 0.28, 0.72]);
+  const revealScaleX = useTransform(progress, [start, center, end], [0.72, 1, 0.72]);
+  const revealOpacity = useTransform(progress, [start, center, end], [0.18, 0.65, 0.18]);
+  const accentBarScale = useTransform(progress, [start, center, end], [0.35, 1, 0.35]);
+
+  return (
+    <div className="relative w-screen h-full flex items-center justify-center shrink-0 overflow-hidden">
+      <motion.div
+        style={{ scale: mediaScale, rotate: mediaRotate, x: mediaX }}
+        className="absolute inset-[-6%]"
+      >
+        <AutoplayVideo
+          src={slide.video}
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 h-full w-full object-cover brightness-[0.48]"
+        />
+      </motion.div>
+
+      <motion.div
+        style={{ opacity: overlayOpacity }}
+        className="absolute inset-0 bg-[radial-gradient(circle_at_center,transparent_12%,rgba(0,0,0,0.72)_72%)]"
+      />
+      <div className="absolute inset-0 bg-[linear-gradient(180deg,rgba(0,0,0,0.25),rgba(0,0,0,0.65))]" />
+      <motion.div
+        style={{ scaleX: revealScaleX, opacity: revealOpacity, transformOrigin: "50% 50%" }}
+        className="absolute inset-y-[12%] left-[12%] right-[12%] border border-white/12"
+      />
+
+      <div className="relative z-10 container mx-auto px-6 sm:px-10">
+        <motion.div
+          style={{ y: contentY, opacity: contentOpacity, scale: contentScale }}
+          className="text-center"
+        >
+          <motion.div
+            style={{ scaleX: accentBarScale, transformOrigin: "50% 50%" }}
+            className="mx-auto mb-5 h-px w-28 bg-white/30"
+          />
+          <p className="text-neon-green font-mono text-[10px] md:text-xs tracking-[0.45em] mb-4 uppercase">
+            {slide.subtitle}
+          </p>
+          <h1 className={`text-[15vw] font-black leading-none tracking-tighter ${slide.accent} mix-blend-difference`}>
+            {slide.title}
+          </h1>
+        </motion.div>
+      </div>
+
+      <motion.div
+        style={{ opacity: contentOpacity }}
+        className="absolute bottom-10 md:bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-4 md:gap-10 text-[9px] md:text-[10px] uppercase tracking-[0.3em] text-zinc-500"
+      >
+        <span>SCROLL TO EXPLORE_0{index + 1}</span>
+        <div className="w-10 md:w-20 h-px bg-zinc-800" />
+        <span>MULTIVERSE ACCESS</span>
+      </motion.div>
+    </div>
+  );
+};
+
 const CinematicHero = () => {
   const targetRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
@@ -44,39 +125,7 @@ const CinematicHero = () => {
       <div className="sticky top-0 h-screen flex items-center overflow-hidden">
         <motion.div style={{ x }} className="flex w-[400vw] h-full shrink-0">
           {slides.map((slide, index) => (
-            <div key={index} className="relative w-screen h-full flex items-center justify-center shrink-0">
-              {/* Background Video */}
-              <AutoplayVideo
-                src={slide.video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                className="absolute inset-0 w-full h-full object-cover filter brightness-[0.4]"
-              />
-              
-              {/* Content Overlay */}
-              <div className="relative z-10 container mx-auto px-10">
-                <motion.div
-                   initial={{ opacity: 0, scale: 0.95 }}
-                   whileInView={{ opacity: 1, scale: 1 }}
-                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-                   className="text-center"
-                >
-                  <p className="text-neon-green font-mono text-xs tracking-[0.5em] mb-4 uppercase">{slide.subtitle}</p>
-                  <h1 className={`text-[15vw] font-black leading-none tracking-tighter ${slide.accent} mix-blend-difference`}>
-                    {slide.title}
-                  </h1>
-                </motion.div>
-              </div>
-
-              {/* Bottom Info */}
-              <div className="absolute bottom-20 left-1/2 -translate-x-1/2 flex items-center gap-10 text-[10px] uppercase tracking-[0.3em] text-zinc-500">
-                <span>SCROLL TO EXPLORE_0{index + 1}</span>
-                <div className="w-20 h-px bg-zinc-800" />
-                <span>MULTIVERSE ACCESS</span>
-              </div>
-            </div>
+            <SlideScene key={slide.title} slide={slide} index={index} progress={scrollYProgress} />
           ))}
         </motion.div>
       </div>

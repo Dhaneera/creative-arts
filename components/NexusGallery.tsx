@@ -53,7 +53,7 @@ const SphereItem: React.FC<SphereItemProps> = ({ item, globalRotateY }) => {
       }}
       className="absolute w-[360px] md:w-[400px] aspect-[16/10] flex items-center justify-center pointer-events-none"
     >
-      <div className="relative w-full h-full glass rounded-[20px] overflow-hidden border border-white/10 pointer-events-auto group shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] hover:border-neon-green/40 transition-all duration-500">
+      <div className="relative w-full h-full glass rounded-[20px] overflow-hidden border border-white/10 pointer-events-auto group shadow-[0_40px_80px_-20px_rgba(0,0,0,0.8)] hover:border-white/40 transition-all duration-500">
           {/* Scanline/Grid Overlay */}
           <div className="absolute inset-0 scanline-overlay z-20 pointer-events-none opacity-20" />
           
@@ -76,7 +76,7 @@ const SphereItem: React.FC<SphereItemProps> = ({ item, globalRotateY }) => {
 
           {/* Hover HUD */}
           <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 p-6 flex flex-col justify-end">
-               <span className="text-neon-green font-mono text-[8px] tracking-[0.4em] uppercase mb-2 font-bold">WHISK_ARCHIVE // 0{item.id}</span>
+               <span className="text-white/75 font-mono text-[8px] tracking-[0.4em] uppercase mb-2 font-bold">WHISK_ARCHIVE // 0{item.id}</span>
                <h3 className="text-2xl font-black text-white italic tracking-tighter uppercase leading-none">{item.title}</h3>
           </div>
       </div>
@@ -166,7 +166,7 @@ const NexusGallery = () => {
         {/* Orbital HUD Overlays */}
         <div className="absolute top-10 left-10 pointer-events-none">
              <div className="flex items-center gap-4 text-white/30 font-mono text-[10px] tracking-[0.6em] mb-4">
-                <div className="w-2 h-2 bg-neon-green animate-pulse" />
+                <div className="w-2 h-2 bg-white animate-pulse" />
                 ORBITAL_ENGINE ACTIVE // VERTEX_v6.0
              </div>
              <div className="w-[350px] h-px bg-gradient-to-r from-white/20 to-transparent" />
@@ -182,7 +182,7 @@ const NexusGallery = () => {
                         key={i}
                         animate={{ height: [4, 20, 4] }}
                         transition={{ duration: 1, repeat: Infinity, delay: i * 0.1 }}
-                        className="w-1 bg-neon-green/30"
+                        className="w-1 bg-white/30"
                     />
                 ))}
              </div>

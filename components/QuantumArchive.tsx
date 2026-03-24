@@ -123,7 +123,7 @@ const CoreTruth = ({ truth, scrollProgress }: { truth: typeof CORE_TRUTHS[0]; sc
             className="absolute inset-0 flex flex-col items-center justify-center p-10 z-[100] pointer-events-none"
         >
             <div className="max-w-2xl text-center">
-                <span className="text-neon-green font-mono text-xs tracking-[1em] uppercase block mb-6 opacity-60">METHOD_LOG_{truth.id}</span>
+                <span className="text-white/60 font-mono text-xs tracking-[1em] uppercase block mb-6">METHOD_LOG_{truth.id}</span>
                 <h2 className="text-5xl md:text-7xl font-black text-white italic tracking-tighter uppercase leading-[0.85] mb-6 core-truth-glow">
                     {truth.title.split("_").map((word, idx) => (
                         <React.Fragment key={idx}>

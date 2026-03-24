@@ -23,7 +23,7 @@ const LayeredGallery = () => {
             whileInView={{ opacity: 1, y: 0 }}
             className="text-8xl font-black tracking-tighter"
           >
-            OUR <br /> <span className="text-solar-yellow uppercase">Gallery</span>
+            OUR <br /> <span className="text-white uppercase">Gallery</span>
           </motion.h2>
           <div className="text-right max-w-sm">
             <p className="text-zinc-500 text-lg">

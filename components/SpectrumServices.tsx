@@ -1,266 +1,181 @@
 "use client";
 
-import React, { useRef, useState, useEffect } from "react";
-import { motion, useMotionValue, useSpring, AnimatePresence, useInView } from "framer-motion";
+import React from "react";
+import { motion } from "framer-motion";
+import Image from "next/image";
 import AutoplayVideo from "./AutoplayVideo";
 
 const services = [
   {
     id: "01",
     title: "INTERFACE",
-    desc: "SCULPTING SPATIAL REWRITES",
+    kicker: "SCULPTING SPATIAL REWRITES",
+    detail:
+      "We build interfaces with cinematic hierarchy and a stronger editorial sense of pacing, so the work feels authored instead of assembled.",
+    note: "Systems for premium product surfaces",
     asset: "/assert/Whisk_2ad878bfe1aea3c998f46445c269c9e2eg.png",
     type: "image",
-    color: "text-neon-green"
+    color: "text-neon-green",
+    align: "left",
   },
   {
     id: "02",
     title: "MOTION",
-    desc: "CHOREOGRAPHING KINETIC SOULS",
+    kicker: "CHOREOGRAPHING KINETIC SOULS",
+    detail:
+      "Motion becomes a narrative tool here, shaping energy and attention without relying on fragile scroll tricks or overdesigned transitions.",
+    note: "Movement that survives real use",
     asset: "/assert/Whisk_edzhrwzijznjhdzx0cm5egotmzy1qtlwumy30sz.mp4",
     type: "video",
-    color: "text-electric-cyan"
+    color: "text-electric-cyan",
+    align: "right",
   },
   {
     id: "03",
     title: "STRATEGY",
-    desc: "MAPPING THE SPEC SPECTRUM",
+    kicker: "MAPPING THE SPEC SPECTRUM",
+    detail:
+      "The direction gets sharper before the polish arrives, which gives the whole experience more conviction, clarity, and visual authority.",
+    note: "Clearer direction, fewer decorative detours",
     asset: "/assert/Whisk_8e16227fc1163a8baa847d584adb863feg.png",
     type: "image",
-    color: "text-hot-pink"
+    color: "text-hot-pink",
+    align: "left",
   },
   {
     id: "04",
     title: "QUANTUM",
-    desc: "ARCHITECTING DIGITAL REALMES",
+    kicker: "ARCHITECTING DIGITAL REALMES",
+    detail:
+      "Design and production stay close together, so ambitious concepts keep their edge as they become real, stable, and shippable.",
+    note: "Concept-heavy work, production-ready finish",
     asset: "/assert/Whisk_cdzhvtm4uwmibjzw0cmhztytemyzqtl4udnx0co.mp4",
     type: "video",
-    color: "text-solar-yellow"
-  }
+    color: "text-solar-yellow",
+    align: "right",
+  },
 ];
 
-// Sub-component to track intersection
-const ServiceItem = ({
-  service,
-  index,
-  isActive,
-  onActivate,
-  onHover,
-  onLeave
+const EditorialMedia = ({
+  asset,
+  title,
+  type,
 }: {
-  service: typeof services[0];
-  index: number;
-  isActive: boolean;
-  onActivate: (idx: number) => void;
-  onHover: (idx: number) => void;
-  onLeave: () => void;
+  asset: string;
+  title: string;
+  type: "image" | "video";
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  // Trigger when the item is strictly in the vertical center of the viewport
-  const isInView = useInView(ref, { margin: "-45% 0px -45% 0px" });
-
-  useEffect(() => {
-    if (isInView) {
-      onActivate(index);
-    }
-  }, [isInView, index, onActivate]);
+  if (type === "image") {
+    return (
+      <Image
+        src={asset}
+        alt={title}
+        fill
+        sizes="(min-width: 1024px) 40vw, 100vw"
+        className="object-cover"
+      />
+    );
+  }
 
   return (
-    <div 
-      ref={ref}
-      onMouseEnter={() => onHover(index)}
-      onMouseLeave={onLeave}
-      className="group relative cursor-none"
-    >
-      {/* Service ID */}
-      <div className="text-[10px] sm:text-xs font-mono text-zinc-500 mb-2 tracking-[0.5em]">
-        SYS_ACCESS // {service.id}
-      </div>
-
-      {/* Massive Kinetic Headline */}
-      <motion.div 
-        animate={{ 
-          x: isActive ? 30 : 0,
-          skewX: isActive ? -5 : 0,
-          opacity: isActive ? 1 : 0.3
-        }}
-        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-        className="relative overflow-visible"
-      >
-        <h2 className={`text-[15vw] md:text-[12vw] font-display font-black leading-none tracking-tighter transition-colors duration-700 ${isActive ? service.color : "text-zinc-800"} uppercase italic`}>
-          {service.title}
-        </h2>
-        
-        {/* Reveal Text */}
-        <div className={`absolute top-1/2 -translate-y-1/2 right-0 pointer-events-none flex flex-col items-end transition-opacity duration-500 ${isActive ? 'opacity-100' : 'opacity-0'}`}>
-            <span className="text-white text-sm md:text-xl font-bold tracking-[0.5em] md:tracking-[1em] mb-2 hidden sm:block">{service.desc}</span>
-            <div className="hidden sm:block w-20 md:w-40 h-[1px] md:h-1 bg-white/20" />
-        </div>
-      </motion.div>
-
-      {/* Mobile/Tablet Inline Asset Detail (Hidden on Desktop 'lg') */}
-      <motion.div 
-        initial={{ height: 0, opacity: 0 }}
-        animate={{ 
-          height: isActive ? "auto" : 0, 
-          opacity: isActive ? 1 : 0,
-          marginTop: isActive ? 16 : 0
-        }}
-        transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-        className="lg:hidden relative w-full overflow-hidden rounded-2xl glass border border-white/10"
-      >
-        <div className="relative w-full aspect-video">
-           {service.type === "image" ? (
-              <img 
-                src={service.asset} 
-                alt={service.title}
-                className="w-full h-full object-cover scale-110 pointer-events-none"
-              />
-            ) : (
-              <AutoplayVideo
-                src={service.asset}
-                autoPlay loop muted playsInline
-                className="w-full h-full object-cover scale-125 pointer-events-none"
-              />
-            )}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent flex items-end p-4">
-              <span className="text-white text-xs font-bold tracking-[0.3em] uppercase">{service.desc}</span>
-            </div>
-        </div>
-      </motion.div>
-    </div>
+    <AutoplayVideo
+      src={asset}
+      autoPlay
+      loop
+      muted
+      playsInline
+      className="h-full w-full object-cover"
+    />
   );
 };
 
 const SpectrumServices = () => {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null);
-  const [isHovered, setIsHovered] = useState(false);
-  const [isSectionHovered, setIsSectionHovered] = useState(false);
-  const containerRef = useRef<HTMLDivElement>(null);
-  
-  // Mouse Position for Lens & Magnetic Pull
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-  
-  const smoothX = useSpring(mouseX, { damping: 20, stiffness: 150 });
-  const smoothY = useSpring(mouseY, { damping: 20, stiffness: 150 });
-
-  const handleMouseMove = (e: React.MouseEvent) => {
-    mouseX.set(e.clientX);
-    mouseY.set(e.clientY);
-  };
-
   return (
-    <section 
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      onMouseEnter={() => setIsSectionHovered(true)}
-      onMouseLeave={() => {
-        setIsSectionHovered(false);
-        if (!isHovered) setActiveIndex(null); // Clear if not hovering an item
-      }}
-      className="relative min-h-screen bg-black py-40 lg:py-60 overflow-hidden hide-global-cursor cursor-none"
-    >
-      {/* Magnetic Beam Cursor (Desktop Only) */}
-      <AnimatePresence>
-        {isSectionHovered && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="pointer-events-none z-[100] hidden lg:block"
-          >
-            <motion.div 
-              style={{ left: smoothX, top: smoothY }}
-              className="fixed w-[400px] h-[1px] bg-gradient-to-r from-white/20 to-transparent origin-left rotate-[15deg]"
-            />
-          </motion.div>
-        )}
-      </AnimatePresence>
+    <section className="relative overflow-hidden bg-black py-20 md:py-24 lg:py-40">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,rgba(255,255,255,0.07),transparent_34%)]" />
+      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.018)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.018)_1px,transparent_1px)] bg-[size:92px_92px] opacity-30 [mask-image:radial-gradient(circle_at_center,black,transparent_80%)]" />
 
-      <div className="container mx-auto px-6 lg:px-10 relative z-20">
-        <div className="flex flex-col gap-24 lg:gap-10">
-          {services.map((service, index) => (
-            <ServiceItem 
-              key={service.id}
-              service={service}
-              index={index}
-              isActive={activeIndex === index}
-              onActivate={(idx) => {
-                if (!isHovered) setActiveIndex(idx);
-              }}
-              onHover={(idx) => {
-                setIsHovered(true);
-                setActiveIndex(idx);
-              }}
-              onLeave={() => {
-                setIsHovered(false);
-              }}
-            />
-          ))}
+      <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10">
+        <div className="mb-12 max-w-4xl md:mb-18 lg:mb-24">
+          <p className="mb-5 font-mono text-[10px] uppercase tracking-[0.6em] text-white/45">
+            Core Capabilities
+          </p>
+          <h2 className="text-3xl font-black uppercase italic leading-[0.92] tracking-tight text-white sm:text-4xl md:text-5xl lg:text-7xl">
+            Editorial Blocks.
+            <br />
+            Stronger Presence.
+          </h2>
+          <p className="mt-5 max-w-2xl text-sm leading-relaxed text-zinc-400 md:mt-6 md:text-base">
+            A magazine-style layout with bolder pacing, clearer hierarchy, and inline media that breaks the section
+            into feature stories instead of making it feel like a widget.
+          </p>
+        </div>
+
+        <div className="space-y-8 md:space-y-10 lg:space-y-16">
+          {services.map((service, index) => {
+            const reversed = service.align === "right";
+
+            return (
+              <motion.article
+                key={service.id}
+                initial={{ opacity: 0, y: 32 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.2 }}
+                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1], delay: index * 0.06 }}
+                className="grid gap-4 rounded-[1.5rem] border border-white/10 bg-white/[0.03] p-3 backdrop-blur-xl sm:p-4 md:gap-6 md:rounded-[1.75rem] md:p-5 lg:grid-cols-12 lg:gap-8 lg:rounded-[2rem] lg:p-8"
+              >
+                <div className={`order-2 flex flex-col justify-between rounded-[1.2rem] border border-white/8 bg-black/40 p-5 sm:p-6 md:rounded-[1.35rem] md:p-7 lg:col-span-5 lg:rounded-[1.5rem] lg:p-8 ${reversed ? "lg:order-2" : "lg:order-1"}`}>
+                  <div>
+                    <div className="mb-6 flex items-center gap-3 md:mb-8 md:gap-4">
+                      <span className={`font-mono text-[10px] uppercase tracking-[0.5em] ${service.color}`}>
+                        {service.id}
+                      </span>
+                      <div className="h-px flex-1 bg-white/10" />
+                    </div>
+
+                    <p className="font-mono text-[10px] uppercase tracking-[0.32em] text-zinc-500 sm:text-[11px] sm:tracking-[0.38em] md:text-xs md:tracking-[0.42em]">
+                      {service.kicker}
+                    </p>
+                    <h3 className={`mt-3 text-[14vw] font-black uppercase italic leading-[0.88] tracking-tight sm:text-[12vw] md:mt-4 md:text-6xl lg:text-[5.4vw] ${service.color}`}>
+                      {service.title}
+                    </h3>
+                    <p className="mt-4 max-w-lg text-sm leading-relaxed text-zinc-300 md:mt-6 md:text-base">
+                      {service.detail}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 flex flex-col gap-4 border-t border-white/10 pt-4 sm:flex-row sm:items-end sm:justify-between sm:gap-6 sm:pt-5">
+                    <p className="max-w-[18rem] font-mono text-[10px] uppercase tracking-[0.28em] text-white/38 sm:max-w-[16rem] sm:tracking-[0.35em]">
+                      {service.note}
+                    </p>
+                    <div className="flex gap-2">
+                      {[0, 1, 2].map((dot) => (
+                        <div
+                          key={dot}
+                          className={`rounded-full ${
+                            dot === 0 ? "h-1.5 w-10 bg-white/70" : "h-1.5 w-1.5 bg-white/20"
+                          }`}
+                        />
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                <div className={`order-1 relative min-h-[240px] overflow-hidden rounded-[1.2rem] border border-white/10 bg-zinc-950 sm:min-h-[300px] md:min-h-[360px] md:rounded-[1.35rem] lg:col-span-7 lg:min-h-[420px] lg:rounded-[1.5rem] ${reversed ? "lg:order-1" : "lg:order-2"}`}>
+                  <EditorialMedia asset={service.asset} title={service.title} type={service.type} />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/12 to-transparent" />
+                  <div className="absolute inset-0 bg-[radial-gradient(circle_at_78%_18%,rgba(255,255,255,0.14),transparent_28%)]" />
+                  <div className="absolute bottom-0 left-0 p-4 sm:p-5 md:p-6 lg:p-7">
+                    <p className="font-mono text-[10px] uppercase tracking-[0.3em] text-white/45 sm:tracking-[0.45em]">
+                      Feature Frame
+                    </p>
+                  </div>
+                </div>
+              </motion.article>
+            );
+          })}
         </div>
       </div>
-
-      {/* The Asset Lens Reveal */}
-      <AnimatePresence>
-        {activeIndex !== null && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0.5 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.5 }}
-            // Only show fixed lens on desktop. Mobile/Tablet uses strictly inline accordion.
-            style={{ left: smoothX, top: smoothY }}
-            className="fixed w-[500px] h-[500px] hidden lg:block -translate-x-1/2 -translate-y-1/2 rounded-full overflow-hidden pointer-events-none z-50 border border-white/10 shadow-[0_0_100px_rgba(255,255,255,0.1)] p-4 glass"
-          >
-            <div className="relative w-full h-full rounded-full overflow-hidden">
-                {services[activeIndex].type === "image" ? (
-                  <img 
-                    src={services[activeIndex].asset} 
-                    alt={services[activeIndex].title}
-                    className="w-full h-full object-cover scale-110 pointer-events-none"
-                  />
-                ) : (
-                  <AutoplayVideo
-                    src={services[activeIndex].asset}
-                    autoPlay loop muted playsInline
-                    className="w-full h-full object-cover scale-150"
-                  />
-                )}
-            </div>
-            {/* Inner Lens Glow */}
-            <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none" />
-          </motion.div>
-        )}
-      </AnimatePresence>
-
-      {/* Background Distorted Atmosphere */}
-      <AnimatePresence>
-        {activeIndex !== null && (
-          <motion.div 
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 0.15 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 pointer-events-none z-0"
-          >
-             {services[activeIndex].type === 'image' ? (
-                <img 
-                    src={services[activeIndex].asset}
-                    alt="atmosphere"
-                    className="w-full h-full object-cover blur-[80px] saturate-200"
-                />
-             ) : (
-                <AutoplayVideo
-                    src={services[activeIndex].asset}
-                    autoPlay loop muted playsInline
-                    className="w-full h-full object-cover blur-[80px] saturate-200"
-                />
-             )}
-          </motion.div>
-        )}
-      </AnimatePresence>
-      
-      {/* Base Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.01)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.01)_1px,transparent_1px)] bg-[size:5vw_5vw] [mask-image:radial-gradient(ellipse_at_center,black,transparent_80%)] pointer-events-none z-0" />
     </section>
   );
 };

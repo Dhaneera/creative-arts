@@ -3,10 +3,10 @@
 :root {
   --background: #0a0a0a;
   --foreground: #ffffff;
-  --neon-green: #b4ff39;
-  --electric-cyan: #00f0ff;
-  --hot-pink: #ff0080;
-  --solar-yellow: #fdbb2d;
+  --neon-green: #f5f5f5;
+  --electric-cyan: #d4d4d4;
+  --hot-pink: #a1a1aa;
+  --solar-yellow: #ffffff;
   --deep-void: #050505;
 }
 
@@ -72,16 +72,16 @@ body * {
   }
 
   .orbital-glow {
-    background: radial-gradient(circle at center, rgba(0, 255, 142, 0.05) 0%, transparent 70%);
+    background: radial-gradient(circle at center, rgba(255, 255, 255, 0.08) 0%, transparent 70%);
     filter: blur(80px);
   }
 
   .focal-glow {
-    box-shadow: 0 0 100px rgba(0, 255, 142, 0.1), inset 0 0 40px rgba(0, 255, 142, 0.05);
+    box-shadow: 0 0 100px rgba(255, 255, 255, 0.12), inset 0 0 40px rgba(255, 255, 255, 0.05);
   }
 
   .radar-beam {
-    background: conic-gradient(from 0deg, transparent 0%, rgba(0, 255, 142, 0.4) 10%, transparent 20%);
+    background: conic-gradient(from 0deg, transparent 0%, rgba(255, 255, 255, 0.28) 10%, transparent 20%);
     filter: blur(4px);
   }
 
@@ -112,10 +112,10 @@ body * {
   .mesh-gradient {
     background-color: var(--background);
     background-image: 
-      radial-gradient(at 0% 0%, rgba(180, 255, 57, 0.1) 0px, transparent 50%),
-      radial-gradient(at 100% 0%, rgba(0, 240, 255, 0.1) 0px, transparent 50%),
-      radial-gradient(at 100% 100%, rgba(255, 0, 128, 0.1) 0px, transparent 50%),
-      radial-gradient(at 0% 100%, rgba(253, 187, 45, 0.1) 0px, transparent 50%);
+      radial-gradient(at 0% 0%, rgba(255, 255, 255, 0.1) 0px, transparent 50%),
+      radial-gradient(at 100% 0%, rgba(255, 255, 255, 0.06) 0px, transparent 50%),
+      radial-gradient(at 100% 100%, rgba(161, 161, 170, 0.08) 0px, transparent 50%),
+      radial-gradient(at 0% 100%, rgba(255, 255, 255, 0.05) 0px, transparent 50%);
     background-attachment: fixed;
   }
 
@@ -171,6 +171,45 @@ body * {
 
   .smooth-reveal {
     animation: slide-up 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  }
+
+  .progressive-scroll-shell {
+    background: rgba(7, 7, 7, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+      0 16px 50px rgba(0, 0, 0, 0.45),
+      inset 0 1px 0 rgba(255, 255, 255, 0.06);
+  }
+
+  .progressive-side-shell {
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.82), rgba(10, 10, 10, 0.6));
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    box-shadow:
+      0 18px 55px rgba(0, 0, 0, 0.4),
+      inset 0 1px 0 rgba(255, 255, 255, 0.04);
+  }
+
+  .progressive-scroll-track {
+    background:
+      linear-gradient(to right, rgba(255, 255, 255, 0.09), rgba(255, 255, 255, 0.02)),
+      repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent 20px,
+        rgba(255, 255, 255, 0.05) 20px,
+        rgba(255, 255, 255, 0.05) 21px
+      );
+  }
+
+  .progressive-scroll-fill {
+    background: linear-gradient(90deg, #ffffff 0%, #f4f4f5 35%, #d4d4d8 68%, #71717a 100%);
+    box-shadow:
+      0 0 28px rgba(255, 255, 255, 0.36),
+      0 0 60px rgba(255, 255, 255, 0.12);
   }
 
   @keyframes slide-up {

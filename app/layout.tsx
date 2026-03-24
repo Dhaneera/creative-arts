@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Playfair_Display, Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import CustomCursor from "@/components/CustomCursor";
+import ScrollProgress from "@/components/ScrollProgress";
 
 const playfair = Playfair_Display({
   variable: "--font-playfair",
@@ -35,6 +36,7 @@ export default function RootLayout({
       className={`${playfair.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col font-sans">
+        <ScrollProgress />
         <CustomCursor />
         {children}
       </body>

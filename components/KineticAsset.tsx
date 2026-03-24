@@ -44,7 +44,7 @@ const KineticAsset: React.FC<KineticAssetProps> = ({
         ease: [0.16, 1, 0.3, 1],
       }}
       style={{ y, rotate }}
-      className={`group relative rounded-3xl overflow-hidden shadow-2xl transition-all duration-700 hover:shadow-[0_20px_50px_rgba(180,255,57,0.2)] ${className}`}
+      className={`group relative rounded-3xl overflow-hidden shadow-2xl transition-all duration-700 hover:shadow-[0_20px_50px_rgba(255,255,255,0.16)] ${className}`}
     >
       {type === "video" || type === "gif" ? (
         <AutoplayVideo
@@ -67,7 +67,7 @@ const KineticAsset: React.FC<KineticAssetProps> = ({
       
       {/* Decorative Glow */}
       <div className="absolute inset-0 bg-gradient-to-tr from-white/10 to-transparent pointer-events-none transition-opacity duration-700 group-hover:opacity-0" />
-      <div className="absolute inset-0 bg-gradient-to-tr from-neon-green/10 via-transparent to-electric-cyan/10 opacity-0 transition-opacity duration-700 group-hover:opacity-100 pointer-events-none" />
+      <div className="absolute inset-0 bg-gradient-to-tr from-white/14 via-transparent to-zinc-400/10 opacity-0 transition-opacity duration-700 group-hover:opacity-100 pointer-events-none" />
     </motion.div>
   );
 };
