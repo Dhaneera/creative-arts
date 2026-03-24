@@ -1,65 +1,56 @@
-import Image from "next/image";
+import Navbar from "@/components/Navbar";
+import CinematicHero from "@/components/CinematicHero";
+import NexusGallery from "@/components/NexusGallery";
+import SpectrumServices from "@/components/SpectrumServices";
+import QuantumArchive from "@/components/QuantumArchive";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
+    <main className="relative min-h-screen bg-black selection:bg-neon-green selection:text-black filmic-grain">
+      <Navbar />
+      
+      {/* Cinematic Horizontal Entry */}
+      <CinematicHero />
+      
+      {/* Non-Typical Typographic Services (No Cards) */}
+      <SpectrumServices />
+
+      {/* Deep 3D Z-Axis Portfolio */}
+      <NexusGallery />
+      
+      {/* Quantum Archive (replacement for typical process) */}
+      <QuantumArchive />
+
+      {/* Final Massive CTA */}
+      <section className="py-60 px-6 relative overflow-hidden bg-white">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.1),transparent)]" />
+        <div className="container mx-auto text-center relative z-10">
+          <p className="text-black/40 font-mono text-xs mb-10 tracking-[0.5em]">READY TO ASCEND?_</p>
+          <h2 className="text-7xl md:text-[12vw] font-black text-black leading-[0.85] tracking-tighter mb-20 uppercase italic">
+            Ascend Your <br /> Reality.
+          </h2>
+          <button className="group relative px-20 py-10 rounded-full bg-black text-white text-3xl font-black hover:scale-105 transition-transform active:scale-95 shadow-2xl overflow-hidden">
+             <span className="relative z-10">Start The Jump</span>
+             <div className="absolute inset-0 bg-neon-green translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
+             <span className="absolute inset-0 flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-black z-20">Start The Jump</span>
+          </button>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+      </section>
+
+      {/* Footer */}
+      <footer className="py-20 px-10 border-t border-white/5 bg-black">
+        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
+          <div className="text-3xl font-black tracking-tighter text-white uppercase italic">STUDIO</div>
+          <div className="flex gap-10 text-zinc-500 text-sm font-medium">
+            <a href="#" className="hover:text-white transition-colors">Instagram</a>
+            <a href="#" className="hover:text-white transition-colors">Dribbble</a>
+            <a href="#" className="hover:text-white transition-colors">Twitter</a>
+          </div>
+          <div className="text-zinc-700 text-[10px] font-mono tracking-widest uppercase">
+            &copy; 2026 WHISK STUDIO. ALL SYSTEMS GO.
+          </div>
         </div>
-      </main>
-    </div>
+      </footer>
+    </main>
   );
 }
