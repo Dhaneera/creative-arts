@@ -46,16 +46,56 @@ export default function Home() {
       </section>
 
       {/* Footer */}
-      <footer className="py-20 px-10 border-t border-white/5 bg-black">
-        <div className="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-10">
-          <div className="text-3xl font-black tracking-tighter text-white uppercase italic">STUDIO</div>
-          <div className="flex gap-10 text-zinc-500 text-sm font-medium">
-            <a href="#" className="hover:text-white transition-colors">Instagram</a>
-            <a href="#" className="hover:text-white transition-colors">Dribbble</a>
-            <a href="#" className="hover:text-white transition-colors">Twitter</a>
+      <footer className="relative overflow-hidden border-t border-white/8 bg-black px-6 py-16 pb-28 md:px-10 md:py-20 lg:pb-44">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_left,rgba(255,255,255,0.06),transparent_34%)]" />
+        <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.015)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.015)_1px,transparent_1px)] bg-[size:90px_90px] opacity-30 [mask-image:radial-gradient(circle_at_center,black,transparent_82%)]" />
+
+        <div className="relative mx-auto max-w-7xl">
+          <div className="grid gap-10 border-b border-white/10 pb-10 md:gap-12 md:pb-12 lg:grid-cols-[1.2fr_0.8fr]">
+            <div>
+              <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.55em] text-white/40">
+                Whisk Studio
+              </p>
+              <h3 className="max-w-3xl text-4xl font-black uppercase italic leading-[0.9] tracking-tight text-white md:text-5xl lg:text-6xl">
+                Built To Feel
+                <br />
+                Bigger Than The Screen.
+              </h3>
+              <p className="mt-5 max-w-2xl text-sm leading-relaxed text-zinc-400 md:text-base">
+                We shape cinematic digital work with stronger motion, clearer systems, and production that keeps the concept sharp all the way through launch.
+              </p>
+            </div>
+
+            <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-1 lg:pl-12">
+              <div>
+                <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.45em] text-white/38">
+                  Connect
+                </p>
+                <div className="flex flex-col gap-3 text-sm font-medium text-zinc-400">
+                  <a href="#" className="transition-colors hover:text-white">Instagram</a>
+                  <a href="#" className="transition-colors hover:text-white">Dribbble</a>
+                  <a href="#" className="transition-colors hover:text-white">Twitter</a>
+                </div>
+              </div>
+
+              <div>
+                <p className="mb-4 font-mono text-[10px] uppercase tracking-[0.45em] text-white/38">
+                  Contact
+                </p>
+                <a
+                  href="mailto:hello@whisk.studio"
+                  className="inline-flex rounded-full border border-white/12 px-5 py-3 text-xs font-black uppercase tracking-[0.35em] text-white transition-colors hover:bg-white hover:text-black"
+                >
+                  hello@whisk.studio
+                </a>
+              </div>
+            </div>
           </div>
-          <div className="text-zinc-700 text-[10px] font-mono tracking-widest uppercase">
-            &copy; 2026 WHISK STUDIO. ALL SYSTEMS GO.
+
+          <div className="flex flex-col gap-4 pt-6 text-[10px] font-mono uppercase tracking-[0.35em] text-zinc-600 md:flex-row md:items-center md:justify-between md:pt-8">
+            <div>Copyright 2026 Whisk Studio</div>
+            <div>Colombo to Everywhere</div>
+            <div>All Systems Go</div>
           </div>
         </div>
       </footer>
