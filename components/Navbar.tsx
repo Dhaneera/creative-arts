@@ -13,6 +13,25 @@ const NAV_ITEMS = [
 const NavItem = ({ name, target, mouseX }: { name: string; target: string; mouseX: MotionValue<number> }) => {
   const ref = useRef<HTMLAnchorElement>(null);
   const [isHovered, setIsHovered] = useState(false);
+  
+  // Responsive base sizes
+  const [baseWidth, setBaseWidth] = useState(100);
+  const [hoverWidth, setHoverWidth] = useState(160);
+
+  useEffect(() => {
+    const checkSize = () => {
+      if (window.innerWidth < 768) {
+        setBaseWidth(60);
+        setHoverWidth(90);
+      } else {
+        setBaseWidth(100);
+        setHoverWidth(160);
+      }
+    };
+    checkSize();
+    window.addEventListener("resize", checkSize);
+    return () => window.removeEventListener("resize", checkSize);
+  }, []);
 
   // Magnetic distance calculation
   const distance = useTransform(mouseX, (val: number) => {
@@ -20,8 +39,8 @@ const NavItem = ({ name, target, mouseX }: { name: string; target: string; mouse
     return val - bounds.x - bounds.width / 2;
   });
 
-  // Scaling effect based on proximity to center of the dock - Increased base width
-  const widthTransform = useTransform(distance, [-150, 0, 150], [100, 160, 100]);
+  // Scaling effect based on proximity to center of the dock
+  const widthTransform = useTransform(distance, [-150, 0, 150], [baseWidth, hoverWidth, baseWidth]);
   const width = useSpring(widthTransform, { mass: 0.1, stiffness: 150, damping: 12 });
 
   return (
@@ -38,13 +57,13 @@ const NavItem = ({ name, target, mouseX }: { name: string; target: string; mouse
          <motion.div 
             animate={{ 
                 height: isHovered ? 2 : 1,
-                width: isHovered ? 40 : 20,
+                width: isHovered ? (baseWidth === 60 ? 30 : 40) : (baseWidth === 60 ? 10 : 20),
                 backgroundColor: isHovered ? "#00FF8E" : "rgba(255,255,255,0.2)"
             }}
-            className="absolute top-[-12px] rounded-full transition-colors"
+            className="absolute top-[-10px] md:top-[-12px] rounded-full transition-colors"
          />
          
-         <span className={`text-[9px] font-black tracking-[0.4em] transition-all duration-300 ${isHovered ? 'text-neon-green scale-110' : 'text-white/30'}`}>
+         <span className={`text-[8px] md:text-[9px] font-black tracking-[0.2em] md:tracking-[0.4em] transition-all duration-300 ${isHovered ? 'text-neon-green md:scale-110 scale-100' : 'text-white/30'}`}>
             {name}
          </span>
       </div>
@@ -97,18 +116,18 @@ const Navbar = () => {
         {/* Dock Inner Aura */}
         <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent pointer-events-none" />
 
-        <div className="flex items-center gap-4 h-full">
+        <div className="flex items-center gap-1 md:gap-4 h-full">
            {NAV_ITEMS.map((item) => (
              <NavItem key={item.name} {...item} mouseX={mouseX} />
            ))}
         </div>
 
         {/* Separator / Dynamic Indicator */}
-        <div className="w-px h-6 bg-white/10 mx-2" />
+        <div className="hidden md:block w-px h-6 bg-white/10 mx-2" />
 
         <a 
           href="mailto:hello@whisk.studio"
-          className="h-10 px-6 mb-5 items-center flex rounded-2xl bg-white text-black text-[10px] font-black tracking-widest uppercase hover:scale-105 transition-transform"
+          className="h-8 md:h-10 px-4 md:px-6 mb-4 md:mb-5 items-center flex rounded-full md:rounded-2xl bg-white text-black text-[8px] md:text-[10px] font-black tracking-widest uppercase hover:scale-105 transition-transform shrink-0"
         >
           WHISK_INIT
         </a>

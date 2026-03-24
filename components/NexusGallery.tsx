@@ -155,7 +155,7 @@ const NexusGallery = () => {
               rotateY: tiltY,
               transformStyle: "preserve-3d" 
             }}
-            className="relative w-full h-full flex items-center justify-center perspective-[3000px] transform-gpu"
+            className="relative w-full h-full flex items-center justify-center perspective-[3000px] transform-gpu scale-[0.35] sm:scale-[0.5] lg:scale-100 transition-transform duration-500 ease-out"
         >
           {sphereItems.map((item) => (
             <SphereItem key={item.id} item={item} globalRotateY={smoothRotateY} />

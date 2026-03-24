@@ -30,14 +30,14 @@ export default function Home() {
       </div>
 
       {/* Final Massive CTA */}
-      <section className="py-60 px-6 relative overflow-hidden bg-white">
+      <section className="py-32 md:py-60 px-6 relative overflow-hidden bg-white">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_120%,rgba(0,0,0,0.1),transparent)]" />
         <div className="container mx-auto text-center relative z-10">
-          <p className="text-black/40 font-mono text-xs mb-10 tracking-[0.5em]">READY TO ASCEND?_</p>
-          <h2 className="text-7xl md:text-[12vw] font-black text-black leading-[0.85] tracking-tighter mb-20 uppercase italic">
+          <p className="text-black/40 font-mono text-[10px] md:text-xs mb-6 md:mb-10 tracking-[0.5em]">READY TO ASCEND?_</p>
+          <h2 className="text-5xl md:text-7xl lg:text-[12vw] font-black text-black leading-[0.85] tracking-tighter mb-10 md:mb-20 uppercase italic">
             Ascend Your <br /> Reality.
           </h2>
-          <button className="group relative px-20 py-10 rounded-full bg-black text-white text-3xl font-black hover:scale-105 transition-transform active:scale-95 shadow-2xl overflow-hidden">
+          <button className="group relative px-10 py-5 md:px-20 md:py-10 rounded-full bg-black text-white text-xl md:text-3xl font-black hover:scale-105 transition-transform active:scale-95 shadow-2xl overflow-hidden">
              <span className="relative z-10">Start The Jump</span>
              <div className="absolute inset-0 bg-neon-green translate-y-full group-hover:translate-y-0 transition-transform duration-500 ease-[0.16,1,0.3,1]" />
              <span className="absolute inset-0 flex items-center justify-center text-black opacity-0 group-hover:opacity-100 transition-opacity duration-500 font-black z-20">Start The Jump</span>
