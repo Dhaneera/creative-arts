@@ -1,33 +1,121 @@
 "use client";
 
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useRef, useState, useEffect } from "react";
+import { motion, useMotionValue, useSpring, useTransform, MotionValue } from "framer-motion";
+
+const NAV_ITEMS = [
+  { name: "HORIZON", target: "#hero" },
+  { name: "SPECTRUM", target: "#services" },
+  { name: "VERTEX", target: "#gallery" },
+  { name: "ARCHIVE", target: "#archive" },
+];
+
+const NavItem = ({ name, target, mouseX }: { name: string; target: string; mouseX: MotionValue<number> }) => {
+  const ref = useRef<HTMLAnchorElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Magnetic distance calculation
+  const distance = useTransform(mouseX, (val: number) => {
+    const bounds = ref.current?.getBoundingClientRect() ?? { x: 0, width: 0 };
+    return val - bounds.x - bounds.width / 2;
+  });
+
+  // Scaling effect based on proximity to center of the dock - Increased base width
+  const widthTransform = useTransform(distance, [-150, 0, 150], [100, 160, 100]);
+  const width = useSpring(widthTransform, { mass: 0.1, stiffness: 150, damping: 12 });
+
+  return (
+    <motion.a
+      ref={ref}
+      href={target}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+      style={{ width }}
+      className="relative flex flex-col items-center justify-center group h-14"
+    >
+      <div className="relative flex flex-col items-center justify-center">
+         {/* Kinetic Indicator */}
+         <motion.div 
+            animate={{ 
+                height: isHovered ? 2 : 1,
+                width: isHovered ? 40 : 20,
+                backgroundColor: isHovered ? "#00FF8E" : "rgba(255,255,255,0.2)"
+            }}
+            className="absolute top-[-12px] rounded-full transition-colors"
+         />
+         
+         <span className={`text-[9px] font-black tracking-[0.4em] transition-all duration-300 ${isHovered ? 'text-neon-green scale-110' : 'text-white/30'}`}>
+            {name}
+         </span>
+      </div>
+    </motion.a>
+  );
+};
 
 const Navbar = () => {
+  const mouseX = useMotionValue(Infinity);
+  const isVisible = useMotionValue(1);
+  const lastScrollY = useRef(0);
+  const scrollTimeout = useRef<NodeJS.Timeout | null>(null);
+
+  // Scroll detection logic: Hide on move, Show on stop or up
+  useEffect(() => {
+    const handleScroll = () => {
+      isVisible.set(0); // Hide immediately on any scroll
+
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+
+      const currentScrollY = window.scrollY;
+
+      // Show on stop (after 400ms of no scrolling)
+      scrollTimeout.current = setTimeout(() => {
+        isVisible.set(1);
+      }, 400);
+
+      lastScrollY.current = currentScrollY;
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (scrollTimeout.current) clearTimeout(scrollTimeout.current);
+    };
+  }, [isVisible]);
+
+  const opacity = useSpring(isVisible, { damping: 20, stiffness: 100 });
+  const y = useTransform(opacity, [0, 1], [100, 0]);
+
   return (
     <motion.nav
-      initial={{ y: -100, opacity: 0 }}
-      animate={{ y: 0, opacity: 1 }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className="fixed top-6 left-1/2 -translate-x-1/2 z-50 w-[90%] max-w-4xl"
+      style={{ y, opacity }}
+      className="fixed bottom-10 left-1/2 -translate-x-1/2 z-[9999]"
+      onMouseMove={(e) => mouseX.set(e.pageX)}
+      onMouseLeave={() => mouseX.set(Infinity)}
     >
-      <div className="glass px-8 py-4 rounded-full flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-neon-green to-electric-cyan" />
-          <span className="text-xl font-bold tracking-tighter">STUDIO</span>
+      <div className="relative h-20 items-end px-4 flex gap-2 bg-black/40 backdrop-blur-2xl border border-white/5 rounded-3xl shadow-2xl overflow-hidden group">
+        
+        {/* Dock Inner Aura */}
+        <div className="absolute inset-0 bg-gradient-to-t from-white/5 to-transparent pointer-events-none" />
+
+        <div className="flex items-center gap-4 h-full">
+           {NAV_ITEMS.map((item) => (
+             <NavItem key={item.name} {...item} mouseX={mouseX} />
+           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-8 text-sm font-medium text-zinc-400">
-          <a href="#" className="hover:text-white transition-colors">Home</a>
-          <a href="#" className="hover:text-white transition-colors">Projects</a>
-          <a href="#" className="hover:text-white transition-colors">Process</a>
-          <a href="#" className="hover:text-white transition-colors">Contact</a>
-        </div>
+        {/* Separator / Dynamic Indicator */}
+        <div className="w-px h-6 bg-white/10 mx-2" />
 
-        <button className="px-5 py-2 rounded-full bg-white text-black text-sm font-bold hover:scale-105 transition-transform active:scale-95">
-          Get Started
-        </button>
+        <a 
+          href="mailto:hello@whisk.studio"
+          className="h-10 px-6 mb-5 items-center flex rounded-2xl bg-white text-black text-[10px] font-black tracking-widest uppercase hover:scale-105 transition-transform"
+        >
+          WHISK_INIT
+        </a>
       </div>
+      
+      {/* Background Pulse Glow */}
+      <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-40 h-10 bg-neon-green/10 blur-3xl -z-10" />
     </motion.nav>
   );
 };

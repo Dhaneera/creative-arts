@@ -8,7 +8,7 @@ const services = [
     id: "01",
     title: "INTERFACE",
     desc: "SCULPTING SPATIAL REWRITES",
-    asset: "/assert/premium_char_1.png",
+    asset: "/assert/Whisk_2ad878bfe1aea3c998f46445c269c9e2eg.png",
     type: "image",
     color: "text-neon-green"
   },
@@ -24,7 +24,7 @@ const services = [
     id: "03",
     title: "STRATEGY",
     desc: "MAPPING THE SPEC SPECTRUM",
-    asset: "/assert/premium_obj_2.png",
+    asset: "/assert/Whisk_8e16227fc1163a8baa847d584adb863feg.png",
     type: "image",
     color: "text-hot-pink"
   },
@@ -50,11 +50,8 @@ const SpectrumServices = () => {
   const smoothY = useSpring(mouseY, { damping: 20, stiffness: 150 });
 
   const handleMouseMove = (e: React.MouseEvent) => {
-    const rect = containerRef.current?.getBoundingClientRect();
-    if (rect) {
-      mouseX.set(e.clientX - rect.left);
-      mouseY.set(e.clientY - rect.top);
-    }
+    mouseX.set(e.clientX);
+    mouseY.set(e.clientY);
   };
 
   return (
@@ -125,7 +122,7 @@ const SpectrumServices = () => {
                   <img 
                     src={services[hoveredIndex].asset} 
                     alt={services[hoveredIndex].title}
-                    className="w-full h-full object-contain scale-125"
+                    className="w-full h-full object-cover scale-110 pointer-events-none"
                   />
                 ) : (
                   <video 

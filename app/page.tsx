@@ -10,16 +10,24 @@ export default function Home() {
       <Navbar />
       
       {/* Cinematic Horizontal Entry */}
-      <CinematicHero />
+      <div id="hero">
+        <CinematicHero />
+      </div>
       
       {/* Non-Typical Typographic Services (No Cards) */}
-      <SpectrumServices />
+      <div id="services">
+        <SpectrumServices />
+      </div>
 
       {/* Deep 3D Z-Axis Portfolio */}
-      <NexusGallery />
+      <div id="gallery">
+        <NexusGallery />
+      </div>
       
       {/* Quantum Archive (replacement for typical process) */}
-      <QuantumArchive />
+      <div id="archive">
+        <QuantumArchive />
+      </div>
 
       {/* Final Massive CTA */}
       <section className="py-60 px-6 relative overflow-hidden bg-white">
