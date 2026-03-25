@@ -39,7 +39,7 @@ const HorizontalHero = () => {
               </p>
             </div>
             <KineticAsset 
-              src="/assert/Whisk_2ad878bfe1aea3c998f46445c269c9e2eg.png"
+              src="/assert/optimized/Whisk_2ad878bfe1aea3c998f46445c269c9e2eg.jpg"
               className="w-[400px] h-[500px]"
             />
           </div>
@@ -47,7 +47,7 @@ const HorizontalHero = () => {
           {/* Slide 3: Kinetic Motion */}
           <div className="w-[80vw] flex items-center gap-12 shrink-0">
              <KineticAsset 
-              src="/assert/Whisk_azy2udolfwomndmz0czmjwotegzwqtlmfznl1in.mp4"
+              src="/assert/optimized/Whisk_azy2udolfwomndmz0czmjwotegzwqtlmfznl1in.mp4"
               type="video"
               className="w-[400px] h-[500px]"
             />

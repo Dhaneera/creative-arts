@@ -6,11 +6,11 @@ import KineticAsset from "./KineticAsset";
 
 const assets = [
   { src: "/assert/premium_char_1.png", title: "Iridescent Void", type: "image", delay: 0 },
-  { src: "/assert/Whisk_cdzhvtm4uwmibjzw0cmhztytemyzqtl4udnx0co.mp4", title: "Liquid Narrative", type: "video", delay: 0.2 },
+  { src: "/assert/optimized/Whisk_cdzhvtm4uwmibjzw0cmhztytemyzqtl4udnx0co.mp4", title: "Liquid Narrative", type: "video", delay: 0.2 },
   { src: "/assert/premium_obj_2.png", title: "Glass Multiverse", type: "image", delay: 0.4 },
-  { src: "/assert/Whisk_edzhrwzijznjhdzx0cm5egotmzy1qtlwumy30sz.mp4", title: "Pulse Kinetic", type: "video", delay: 0.1 },
+  { src: "/assert/optimized/Whisk_edzhrwzijznjhdzx0cm5egotmzy1qtlwumy30sz.mp4", title: "Pulse Kinetic", type: "video", delay: 0.1 },
   { src: "/assert/premium_char_3.png", title: "Future Gaze", type: "image", delay: 0.3 },
-  { src: "/assert/Whisk_gznkjwmhzdmmzgol1izhntotudo0qtlmdtzh1yy.mp4", title: "Chromatic Whisk", type: "video", delay: 0.5 },
+  { src: "/assert/optimized/Whisk_gznkjwmhzdmmzgol1izhntotudo0qtlmdtzh1yy.mp4", title: "Chromatic Whisk", type: "video", delay: 0.5 },
 ];
 
 const LayeredGallery = () => {

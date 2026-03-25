@@ -38,7 +38,7 @@ const KineticServices = () => {
       {/* Background Spirit Asset */}
       <div className="absolute inset-0 opacity-20 pointer-events-none">
          <AutoplayVideo
-            src="/assert/Whisk_cdzhvtm4uwmibjzw0cmhztytemyzqtl4udnx0co.mp4"
+            src="/assert/optimized/Whisk_cdzhvtm4uwmibjzw0cmhztytemyzqtl4udnx0co.mp4"
             autoPlay loop muted playsInline
             className="w-full h-full object-cover blur-[100px] scale-125"
          />

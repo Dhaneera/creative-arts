@@ -6,25 +6,25 @@ import AutoplayVideo from "./AutoplayVideo";
 
 const slides = [
   {
-    video: "/assert/Whisk_gznkjwmhzdmmzgol1izhntotudo0qtlmdtzh1yy.mp4",
+    video: "/assert/optimized/Whisk_gznkjwmhzdmmzgol1izhntotudo0qtlmdtzh1yy.mp4",
     title: "WHISK STUDIO",
     subtitle: "A NEW ERA OF CREATIVE MOTION",
     accent: "text-neon-green"
   },
   {
-    video: "/assert/Whisk_edzhrwzijznjhdzx0cm5egotmzy1qtlwumy30sz.mp4",
+    video: "/assert/optimized/Whisk_edzhrwzijznjhdzx0cm5egotmzy1qtlwumy30sz.mp4",
     title: "KINETIC ENERGY",
     subtitle: "BLURRING LINES BETWEEN ART & CODE",
     accent: "text-electric-cyan"
   },
   {
-    video: "/assert/Whisk_cdzhvtm4uwmibjzw0cmhztytemyzqtl4udnx0co.mp4",
+    video: "/assert/optimized/Whisk_cdzhvtm4uwmibjzw0cmhztytemyzqtl4udnx0co.mp4",
     title: "IRIDESCENT DEPTH",
     subtitle: "HIGH-FIDELITY 3D INTERFACES",
     accent: "text-hot-pink"
   },
   {
-    video: "/assert/Whisk_azy2udolfwomndmz0czmjwotegzwqtlmfznl1in.mp4",
+    video: "/assert/optimized/Whisk_azy2udolfwomndmz0czmjwotegzwqtlmfznl1in.mp4",
     title: "START YOUR STORY",
     subtitle: "BEYOND THE CONVENTIONAL HORIZON",
     accent: "text-solar-yellow"

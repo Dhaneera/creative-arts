@@ -15,7 +15,7 @@ const services = [
     detail:
       "Layered interfaces with stronger visual tension, clearer composition, and interaction patterns that feel crafted instead of assembled.",
     note: "Built for premium product surfaces",
-    asset: "/assert/Whisk_2ad878bfe1aea3c998f46445c269c9e2eg.png",
+    asset: "/assert/optimized/Whisk_2ad878bfe1aea3c998f46445c269c9e2eg.jpg",
     type: "image" as MediaType,
     color: "text-neon-green",
   },
@@ -26,7 +26,7 @@ const services = [
     detail:
       "Movement designed to guide attention and add emotional weight without turning the experience fragile or noisy.",
     note: "Motion language that survives real use",
-    asset: "/assert/Whisk_edzhrwzijznjhdzx0cm5egotmzy1qtlwumy30sz.mp4",
+    asset: "/assert/optimized/Whisk_edzhrwzijznjhdzx0cm5egotmzy1qtlwumy30sz.mp4",
     type: "video" as MediaType,
     color: "text-electric-cyan",
   },
@@ -37,7 +37,7 @@ const services = [
     detail:
       "Sharper strategic framing that reduces noise early, so the final work feels more coherent, expensive, and deliberate.",
     note: "Clearer direction, fewer decorative detours",
-    asset: "/assert/Whisk_8e16227fc1163a8baa847d584adb863feg.png",
+    asset: "/assert/optimized/Whisk_8e16227fc1163a8baa847d584adb863feg.jpg",
     type: "image" as MediaType,
     color: "text-hot-pink",
   },
@@ -48,16 +48,16 @@ const services = [
     detail:
       "Concept-heavy visuals translated into stable production work without flattening the original energy of the idea.",
     note: "Concept-first, launch-ready finish",
-    asset: "/assert/Whisk_cdzhvtm4uwmibjzw0cmhztytemyzqtl4udnx0co.mp4",
+    asset: "/assert/optimized/Whisk_cdzhvtm4uwmibjzw0cmhztytemyzqtl4udnx0co.mp4",
     type: "video" as MediaType,
     color: "text-solar-yellow",
   },
 ];
 
 const collageAssets = [
-  "/assert/Whisk_4329104348fa66185bb4b062e6d362fceg.png",
-  "/assert/Whisk_44a0286e44787eb896449bd49f1106d6eg.png",
-  "/assert/Whisk_9659259ee06e6169fc04aba1bf6fa981eg.png",
+  "/assert/optimized/Whisk_4329104348fa66185bb4b062e6d362fceg.jpg",
+  "/assert/optimized/Whisk_44a0286e44787eb896449bd49f1106d6eg.jpg",
+  "/assert/optimized/Whisk_9659259ee06e6169fc04aba1bf6fa981eg.jpg",
 ];
 
 const Media = ({

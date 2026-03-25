@@ -85,20 +85,20 @@ const SphereItem: React.FC<SphereItemProps> = ({ item, globalRotateY }) => {
 };
 
 const WhiskAssets = [
-  { id: 1, src: "/assert/Whisk_2ad878bfe1aea3c998f46445c269c9e2eg.png", title: "NEBULA_UNIT" },
-  { id: 2, src: "/assert/Whisk_4329104348fa66185bb4b062e6d362fceg.png", title: "VOID_WALKER" },
-  { id: 3, src: "/assert/Whisk_44a0286e44787eb896449bd49f1106d6eg.png", title: "CHROME_SOUL" },
-  { id: 4, src: "/assert/Whisk_4ff13fbeec87dafb3664c1a1b7c652b7eg.png", title: "SOLAR_NEXUS" },
-  { id: 5, src: "/assert/Whisk_5e2517b2d656c17b48245003bd54ef99eg.png", title: "QUANTUM_SHIFT" },
-  { id: 6, src: "/assert/Whisk_73b23ac8572ef47adf140c6ce8af89fdeg.png", title: "NEON_SIGHT" },
-  { id: 7, src: "/assert/Whisk_8e16227fc1163a8baa847d584adb863feg.png", title: "LUX_ARCH" },
-  { id: 8, src: "/assert/Whisk_9659259ee06e6169fc04aba1bf6fa981eg.png", title: "CYBER_FLARE" },
-  { id: 9, src: "/assert/Whisk_9a6a48ce8ffb5a5b1cd452db981ec49aeg.png", title: "GRID_PULSE" },
-  { id: 10, src: "/assert/Whisk_a3b24b09df7d703ac0245d87e323fdd5eg.png", title: "CORE_ARCHIVE" },
-  { id: 11, src: "/assert/Whisk_gznkjwmhzdmmzgol1izhntotudo0qtlmdtzh1yy.mp4", title: "FLUID_VORTEX", isVideo: true },
-  { id: 12, src: "/assert/Whisk_edzhrwzijznjhdzx0cm5egotmzy1qtlwumy30sz.mp4", title: "ENERGY_WAVE", isVideo: true },
-  { id: 13, src: "/assert/Whisk_cdzhvtm4uwmibjzw0cmhztytemyzqtl4udnx0co.mp4", title: "LIQUID_LIGHT", isVideo: true },
-  { id: 14, src: "/assert/Whisk_azy2udolfwomndmz0czmjwotegzwqtlmfznl1in.mp4", title: "NEURAL_STORY", isVideo: true }
+  { id: 1, src: "/assert/optimized/Whisk_2ad878bfe1aea3c998f46445c269c9e2eg.jpg", title: "NEBULA_UNIT" },
+  { id: 2, src: "/assert/optimized/Whisk_4329104348fa66185bb4b062e6d362fceg.jpg", title: "VOID_WALKER" },
+  { id: 3, src: "/assert/optimized/Whisk_44a0286e44787eb896449bd49f1106d6eg.jpg", title: "CHROME_SOUL" },
+  { id: 4, src: "/assert/optimized/Whisk_4ff13fbeec87dafb3664c1a1b7c652b7eg.jpg", title: "SOLAR_NEXUS" },
+  { id: 5, src: "/assert/optimized/Whisk_5e2517b2d656c17b48245003bd54ef99eg.jpg", title: "QUANTUM_SHIFT" },
+  { id: 6, src: "/assert/optimized/Whisk_73b23ac8572ef47adf140c6ce8af89fdeg.jpg", title: "NEON_SIGHT" },
+  { id: 7, src: "/assert/optimized/Whisk_8e16227fc1163a8baa847d584adb863feg.jpg", title: "LUX_ARCH" },
+  { id: 8, src: "/assert/optimized/Whisk_9659259ee06e6169fc04aba1bf6fa981eg.jpg", title: "CYBER_FLARE" },
+  { id: 9, src: "/assert/optimized/Whisk_9a6a48ce8ffb5a5b1cd452db981ec49aeg.jpg", title: "GRID_PULSE" },
+  { id: 10, src: "/assert/optimized/Whisk_a3b24b09df7d703ac0245d87e323fdd5eg.jpg", title: "CORE_ARCHIVE" },
+  { id: 11, src: "/assert/optimized/Whisk_gznkjwmhzdmmzgol1izhntotudo0qtlmdtzh1yy.mp4", title: "FLUID_VORTEX", isVideo: true },
+  { id: 12, src: "/assert/optimized/Whisk_edzhrwzijznjhdzx0cm5egotmzy1qtlwumy30sz.mp4", title: "ENERGY_WAVE", isVideo: true },
+  { id: 13, src: "/assert/optimized/Whisk_cdzhvtm4uwmibjzw0cmhztytemyzqtl4udnx0co.mp4", title: "LIQUID_LIGHT", isVideo: true },
+  { id: 14, src: "/assert/optimized/Whisk_azy2udolfwomndmz0czmjwotegzwqtlmfznl1in.mp4", title: "NEURAL_STORY", isVideo: true }
 ];
 
 const NexusGallery = () => {

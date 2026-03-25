@@ -38,17 +38,17 @@ const CORE_TRUTHS = [
 ];
 
 const ARTIFACTS = [
-  "/assert/Whisk_2ad878bfe1aea3c998f46445c269c9e2eg.png",
-  "/assert/Whisk_4329104348fa66185bb4b062e6d362fceg.png",
-  "/assert/Whisk_44a0286e44787eb896449bd49f1106d6eg.png",
-  "/assert/Whisk_4ff13fbeec87dafb3664c1a1b7c652b7eg.png",
-  "/assert/Whisk_5e2517b2d656c17b48245003bd54ef99eg.png",
-  "/assert/Whisk_73b23ac8572ef47adf140c6ce8af89fdeg.png",
-  "/assert/Whisk_8e16227fc1163a8baa847d584adb863feg.png",
-  "/assert/Whisk_9659259ee06e6169fc04aba1bf6fa981eg.png",
-  "/assert/Whisk_9a6a48ce8ffb5a5b1cd452db981ec49aeg.png",
-  "/assert/Whisk_a3b24b09df7d703ac0245d87e323fdd5eg.png",
-  "/assert/Whisk_e123c77f312cd0eb98142cfe1fdc2529eg.png"
+  "/assert/optimized/Whisk_2ad878bfe1aea3c998f46445c269c9e2eg.jpg",
+  "/assert/optimized/Whisk_4329104348fa66185bb4b062e6d362fceg.jpg",
+  "/assert/optimized/Whisk_44a0286e44787eb896449bd49f1106d6eg.jpg",
+  "/assert/optimized/Whisk_4ff13fbeec87dafb3664c1a1b7c652b7eg.jpg",
+  "/assert/optimized/Whisk_5e2517b2d656c17b48245003bd54ef99eg.jpg",
+  "/assert/optimized/Whisk_73b23ac8572ef47adf140c6ce8af89fdeg.jpg",
+  "/assert/optimized/Whisk_8e16227fc1163a8baa847d584adb863feg.jpg",
+  "/assert/optimized/Whisk_9659259ee06e6169fc04aba1bf6fa981eg.jpg",
+  "/assert/optimized/Whisk_9a6a48ce8ffb5a5b1cd452db981ec49aeg.jpg",
+  "/assert/optimized/Whisk_a3b24b09df7d703ac0245d87e323fdd5eg.jpg",
+  "/assert/optimized/Whisk_e123c77f312cd0eb98142cfe1fdc2529eg.jpg"
 ];
 
 // High-density distribution for 'Hyperspace' effect
