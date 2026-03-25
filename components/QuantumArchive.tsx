@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { motion, useScroll, useTransform, useSpring, MotionValue } from "framer-motion";
 import Image from "next/image";
 
@@ -59,7 +59,8 @@ const TUNNEL_ASSETS = Array.from({ length: 50 }, (_, i) => ({
   targetY: ((i * 263) % 120) - 60, // -60 to 60 (percentage of screen)
   zOffset: (i * 400),             // Depth staggering
   rot: (i * 15) % 360,
-  scale: 0.8 + Math.random() * 0.7
+  // Deterministic scale to avoid SSR/client hydration drift.
+  scale: 0.8 + (((i * 73) % 100) / 100) * 0.7
 }));
 
 const TunnelLayer = ({ index, scrollProgress }: { index: number; scrollProgress: MotionValue<number> }) => {
@@ -104,6 +105,7 @@ const HyperspaceArtifact = ({ asset, scrollProgress }: { asset: typeof TUNNEL_AS
                 src={asset.src} 
                 alt="Archive Fragment" 
                 fill 
+                sizes="320px"
                 className="object-contain drop-shadow-[0_0_30px_rgba(255,255,255,0.2)]"
             />
         </motion.div>
@@ -141,6 +143,17 @@ const CoreTruth = ({ truth, scrollProgress }: { truth: typeof CORE_TRUTHS[0]; sc
 
 const QuantumArchive = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setMounted(true);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
   
   const { scrollYProgress } = useScroll({
     target: containerRef,
@@ -154,7 +167,7 @@ const QuantumArchive = () => {
       ref={containerRef} 
       className="relative h-[800vh] bg-black overflow-visible mt-[-100vh]"
     >
-      <div className="sticky top-0 h-screen w-full flex items-center justify-center overflow-hidden quantum-tunnel bg-black">
+      <div className="sticky top-0 h-screen w-full relative flex items-center justify-center overflow-hidden quantum-tunnel bg-black">
         
         {/* Deep Void Glow */}
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,black_80%)] opacity-40" />
@@ -162,17 +175,17 @@ const QuantumArchive = () => {
         <div className="relative w-full h-full flex items-center justify-center" style={{ perspective: "1500px" }}>
             
             {/* Hyperspace Tunnel Layers */}
-            {[...Array(30)].map((_, i) => (
+            {mounted && [...Array(30)].map((_, i) => (
                 <TunnelLayer key={i} index={i} scrollProgress={smoothProgress} />
             ))}
 
             {/* Shooting Sideways Artifacts */}
-            {TUNNEL_ASSETS.map((asset, i) => (
+            {mounted && TUNNEL_ASSETS.map((asset, i) => (
                 <HyperspaceArtifact key={i} asset={asset} scrollProgress={smoothProgress} />
             ))}
 
             {/* Core Truth Manifestations */}
-            {CORE_TRUTHS.map((truth) => (
+            {mounted && CORE_TRUTHS.map((truth) => (
                 <CoreTruth key={truth.id} truth={truth} scrollProgress={smoothProgress} />
             ))}
         </div>

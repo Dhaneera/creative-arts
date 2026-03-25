@@ -1,6 +1,6 @@
 "use client";
 
-import React, { useRef, useMemo } from "react";
+import React, { useEffect, useRef, useMemo, useState } from "react";
 import { motion, useScroll, useTransform, useSpring, useMotionValue, MotionValue } from "framer-motion";
 import Image from "next/image";
 import AutoplayVideo from "./AutoplayVideo";
@@ -103,6 +103,17 @@ const WhiskAssets = [
 
 const NexusGallery = () => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    const frame = window.requestAnimationFrame(() => {
+      setMounted(true);
+    });
+
+    return () => {
+      window.cancelAnimationFrame(frame);
+    };
+  }, []);
   
   // Distribute items around the sphere
   const sphereItems = useMemo(() => {
@@ -141,7 +152,7 @@ const NexusGallery = () => {
       onMouseMove={handleMouseMove}
       className="relative h-[200vh] bg-black overflow-x-hidden"
     >
-      <div className="sticky top-0 h-screen w-full overflow-hidden flex items-center justify-center">
+      <div className="sticky top-0 h-screen w-full relative overflow-hidden flex items-center justify-center">
         
         {/* Orbital Background */}
         <div className="absolute inset-0 z-0">
@@ -158,7 +169,7 @@ const NexusGallery = () => {
             }}
             className="relative w-full h-full flex items-center justify-center perspective-[3000px] transform-gpu scale-[0.35] sm:scale-[0.5] lg:scale-100 transition-transform duration-500 ease-out"
         >
-          {sphereItems.map((item) => (
+          {mounted && sphereItems.map((item) => (
             <SphereItem key={item.id} item={item} globalRotateY={smoothRotateY} />
           ))}
         </motion.div>

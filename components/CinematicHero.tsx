@@ -174,7 +174,7 @@ const CinematicHero = () => {
 
   return (
     <section ref={targetRef} className="relative h-[400vh] bg-black">
-      <div className="sticky top-0 h-screen flex items-center overflow-hidden">
+      <div className="sticky top-0 h-screen relative flex items-center overflow-hidden">
         <motion.div style={{ x }} className="flex w-[400vw] h-full shrink-0">
           {slides.map((slide, index) => (
             <SlideScene

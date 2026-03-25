@@ -49,7 +49,6 @@ const AutoplayVideo = ({
       autoPlay={autoPlay}
       loop={loop}
       muted={muted}
-      defaultMuted={muted}
       playsInline={playsInline}
       preload="auto"
       {...props}
